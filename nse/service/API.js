@@ -233,15 +233,7 @@ async function getTopValueStocks() {
 }
 
 async function getTopVolumeStocks() {
-  let data = await axios({
-    method: 'GET',
-    url: TOP_VOLUME_URL,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      Host: 'www.nseindia.com',
-      'Referer': 'https://nseindia.com/live_market/dynaContent/live_analysis/most_active_securities.htm'
-    }
-  });
+  let data = await axios(TOP_VOLUME_URL);
   return data.data;
 }
 
