@@ -84,45 +84,49 @@ function axiosCSV(url) {
   });
 }
 
-function getMarketStatus() {
-  return axios.get(MARKET_STATUS_URL, {
-    transformResponse: function (data) {
-      return {
-        status: JSON.parse(data).NormalMktStatus
-      };
-    }
-  });
+async function getMarketStatus() {
+  let data = await axios.get(MARKET_STATUS_URL);
+  data = data.data.NormalMktStatus;
+  const resp = {
+    status: data,
+  }
+  return resp;
 }
 
-function getIndices() {
-  return axios.get(INDICES_WATCH_URL);
+async function getIndices() {
+  const data = await axios.get(INDICES_WATCH_URL);
+  return data.data.data;
 }
 
 function getSectorsList() {
   return axios.get(SECTORS_LIST);
 }
 
-function getQuotes(symbol) {
-  return axios.get(GET_QUOTE_URL + encodeURIComponent(symbol),
+async function getQuotes(symbol) {
+  let data = await axios.get(GET_QUOTE_URL + encodeURIComponent(symbol),
     {
       headers: {
         Referer: GET_QUOTE_URL + encodeURIComponent(symbol),
         'X-Requested-With': 'XMLHttpRequest'
       }
-    });
+    }
+  );
+  return data.data;
 }
 
-function getQuoteInfo(symbol) {
-  return axios.get(QUOTE_INFO_URL + encodeURIComponent(symbol), {
+async function getQuoteInfo(symbol) {
+  let data = await axios.get(QUOTE_INFO_URL + encodeURIComponent(symbol), {
     headers: {
       Referer: GET_QUOTE_URL + encodeURIComponent(symbol),
       'X-Requested-With': 'XMLHttpRequest'
     }
-  })
+  });
+  return data.data;
 }
 
-function getGainers() {
-  return axios.get(GAINERS_URL);
+async function getGainers() {
+  let data = await axios.get(GAINERS_URL);
+  return data.data;
 }
 
 function getLosers() {

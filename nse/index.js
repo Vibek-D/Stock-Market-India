@@ -8,8 +8,9 @@ var merge = require('lodash/merge');
  * false => market Open
  * @returns {boolean}
  */
-function getMarketStatus() {
-  return NSEAPI.getMarketStatus();
+async function getMarketStatus() {
+  const data = await NSEAPI.getMarketStatus();
+  return data;
 }
 
 
@@ -17,8 +18,9 @@ function getMarketStatus() {
  * API returning indices list
  * @returns {*}
  */
-function getIndices() {
-  return NSEAPI.getIndices();
+async function getIndices() {
+  const data = await NSEAPI.getIndices();
+  return data;
 }
 
 
@@ -38,8 +40,9 @@ function getSectorsList() {
 }
 
 
-function getQuotes(symbol) {
-  return NSEAPI.getQuotes(symbol);
+async function getQuotes(symbol) {
+  let data = await NSEAPI.getQuotes(symbol);
+  return data;
 }
 
 
@@ -49,8 +52,9 @@ function getQuotes(symbol) {
  *
  * @returns {object}
  */
-function getQuoteInfo(symbol) {
-  return NSEAPI.getQuoteInfo(symbol);
+async function getQuoteInfo(symbol) {
+  let data = await NSEAPI.getQuoteInfo(symbol);
+  return data;
 }
 
 
@@ -58,8 +62,9 @@ function getQuoteInfo(symbol) {
  * Get List of Gainers
  * @returns {*}
  */
-function getGainers() {
-  return NSEAPI.getGainers();
+async function getGainers() {
+  let data = await NSEAPI.getGainers();
+  return data;
 }
 
 

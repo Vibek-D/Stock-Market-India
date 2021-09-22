@@ -7,55 +7,45 @@ var NSEAPI = API.NSE;
 
 var app = express();
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });
 
 // National Stock Exchange (NSE) APIS
 
 // Get the stock market status (open/closed) - JSON
 // Example: http://localhost:3000/get_market_status
-app.get("/get_market_status", (req, res, next) => {
-  NSEAPI.getMarketStatus()
-    .then(function (response) {
-      res.json(response.data);
-    });
+app.get("/get_market_status", async (req, res, next) => {
+  const data = await NSEAPI.getMarketStatus();
+  res.json(data);
 });
 
 // Get the NSE indexes information (last updated, name, previous close, open, low, high, last, percent change, year high and low, index order) - JSON
 // Example: http://localhost:3000/nse/get_indices
-app.get("/nse/get_indices", (req, res, next) => {
-  NSEAPI.getIndices()
-    .then(function (response) {
-      res.json(response.data);
-    });
+app.get("/nse/get_indices", async (req, res, next) => {
+  const data = await NSEAPI.getIndices();
+  res.json(data);
 });
 
 // Get the quotes of all indexes in NSE - HTML
 // Example: http://localhost:3000/nse/get_quotes
-app.get("/nse/get_quotes", (req, res, next) => {
-  NSEAPI.getQuotes()
-    .then(function (response) {
-      res.json(response.data);
-    });
+app.get("/nse/get_quotes", async (req, res, next) => {
+  const data = await NSEAPI.getQuotes();
+  res.send(data);
 });
 
 // Get the quotation data of the symbol (companyName) from NSE - JSON
 // Example: http://localhost:3000/nse/get_quote_info?companyName=TCS
-app.get("/nse/get_quote_info", (req, res, next) => {
-  NSEAPI.getQuoteInfo(req.query.companyName)
-    .then(function (response) {
-      res.json(response.data);
-    });
+app.get("/nse/get_quote_info", async (req, res, next) => {
+  const data = await NSEAPI.getQuoteInfo(req.query.companyName);
+  res.json(data);
 });
 
 // Get the top 10 gainers of NSE - JSON
 // Example: http://localhost:3000/nse/get_gainers
-app.get("/nse/get_gainers", (req, res, next) => {
-  NSEAPI.getGainers()
-    .then(function (response) {
-      res.json(response.data);
-    });
+app.get("/nse/get_gainers", async (req, res, next) => {
+  const data = await NSEAPI.getGainers()
+  res.json(data);
 });
 
 // Get the top 10 losers of NSE - JSON
@@ -160,7 +150,7 @@ app.get("/nse/get_chart_data_new", (req, res, next) => {
     });
 });
 
-// Bombay Stock Exchange (NSE) APIS
+// Bombay Stock Exchange (BSE) APIS
 
 // Get details of all index in BSE Stock exchange - JSON
 // Example: http://localhost:3000/bse/get_indices
