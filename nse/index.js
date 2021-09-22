@@ -35,8 +35,9 @@ async function getIndices() {
     }],
  * @returns {array}
  */
-function getSectorsList() {
-  return NSEAPI.getSectorsList();
+async function getSectorsList() {
+  let data = await NSEAPI.getSectorsList();
+  return data;
 }
 
 
@@ -72,8 +73,9 @@ async function getGainers() {
  * Get List of Losers
  * @returns {*}
  */
-function getLosers() {
-  return NSEAPI.getLosers();
+async function getLosers() {
+  let data = await NSEAPI.getLosers();
+  return data;
 }
 
 
@@ -81,8 +83,9 @@ function getLosers() {
  * Get Incline and Decline values
  * @returns {*}
  */
-function getInclineDecline() {
-  return NSEAPI.getInclineDecline();
+async function getInclineDecline() {
+  let data = await NSEAPI.getInclineDecline();
+  return data;
 }
 
 
@@ -91,8 +94,9 @@ function getInclineDecline() {
  * @param slug
  * @returns {*}
  */
-function getIndexStocks(slug) {
-  return NSEAPI.getIndexStocks(slug);
+async function getIndexStocks(slug) {
+  let data = await NSEAPI.getIndexStocks(slug);
+  return data;
 }
 
 
@@ -102,8 +106,9 @@ function getIndexStocks(slug) {
  * @param time [1, 5, 15, 30, 60, 'week', 'month', 'year'] minutes
  * @returns {*}
  */
-function getIntraDayData(symbol, time) {
-  return NSEAPI.getIntraDayData(symbol, time);
+async function getIntraDayData(symbol, time) {
+  let data = await NSEAPI.getIntraDayData(symbol, time);
+  return data;
 }
 
 
@@ -113,8 +118,9 @@ function getIntraDayData(symbol, time) {
  * @param time [1, 5, 15, 30, 60, 'week', 'month', 'year'] minutes
  * @returns {*}
  */
-function getChartDataNew(symbol, time) {
-  return NSEAPI.getChartDataNew(symbol, time);
+async function getChartDataNew(symbol, time) {
+  let data = await NSEAPI.getChartDataNew(symbol, time);
+  return data;
 }
 
 
@@ -123,8 +129,9 @@ function getChartDataNew(symbol, time) {
  * @param symbol {string} min 3 chars
  * @returns {[{name, symbol]}
  */
-function searchStocks(symbol) {
-  return NSEAPI.searchStocks(symbol);
+async function searchStocks(symbol) {
+  let data = await NSEAPI.searchStocks(symbol);
+  return data;
 }
 
 
@@ -135,28 +142,33 @@ function searchStocks(symbol) {
  * @param isIndex {boolean}
  * @returns {*}
  */
-function getStockFuturesData(symbol, expiryDate, isIndex) {
-  return NSEAPI.getStockFuturesData(symbol, expiryDate, isIndex);
+async function getStockFuturesData(symbol, expiryDate, isIndex) {
+  let data = await NSEAPI.getStockFuturesData(symbol, expiryDate, isIndex);
+  return data;
 }
 
 
-function get52WeekHigh() {
-  return NSEAPI.get52WeekHigh();
+async function get52WeekHigh() {
+  let data = await NSEAPI.get52WeekHigh();
+  return data;
 }
 
 
-function get52WeekLow() {
-  return NSEAPI.get52WeekLow();
+async function get52WeekLow() {
+  let data = await NSEAPI.get52WeekLow();
+  return data;
 }
 
 
-function getTopValueStocks() {
-  return NSEAPI.getTopValueStocks();
+async function getTopValueStocks() {
+  let data = await NSEAPI.getTopValueStocks();
+  return data;
 }
 
 
-function getTopVolumeStocks() {
-  return NSEAPI.getTopVolumeStocks();
+async function getTopVolumeStocks() {
+  let data = await NSEAPI.getTopVolumeStocks();
+  return data;
 }
 
 

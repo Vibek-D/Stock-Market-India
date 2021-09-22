@@ -129,47 +129,54 @@ async function getGainers() {
   return data.data;
 }
 
-function getLosers() {
-  return axios.get(LOSERS_URL);
+async function getLosers() {
+  let data = await axios.get(LOSERS_URL);
+  return data.data;
 }
 
-function getInclineDecline() {
-  return axios.get(ADVANCES_DECLINES_URL);
+async function getInclineDecline() {
+  let data = await axios.get(ADVANCES_DECLINES_URL);
+  return data.data;
 }
 
-function getIndexStocks(slug) {
-  return axios.get(INDEX_STOCKS_URL + encodeURI(slug) + 'StockWatch.json');
+async function getIndexStocks(slug) {
+  let data = await axios.get(INDEX_STOCKS_URL + encodeURI(slug) + 'StockWatch.json');
+  return data.data;
 }
 
-function getIntraDayData(symbol, time) {
+async function getIntraDayData(symbol, time) {
   var periodType = typeof time === 'string' ? 1 : 2;
   var period = getTime(periodType, time);
 
-  return axios.get(INTRADAY_URL + encodeURIComponent(symbol) + '&Periodicity=' + period + '&PeriodType=' + periodType);
+  let data = await axios.get(INTRADAY_URL + encodeURIComponent(symbol) + '&Periodicity=' + period + '&PeriodType=' + periodType);
+  return data.data;
 }
 
-function getChartDataNew(symbol, time) {
+async function getChartDataNew(symbol, time) {
   var periodType = typeof time === 'string' ? 1 : 2;
   var period = getTime(periodType, time);
 
-  return axios.post(NEW_CHART_DATA_URL,
+  let data = await axios.post(NEW_CHART_DATA_URL,
     `Instrument=FUTSTK&CDSymbol=${symbol}&Segment=CM&Series=EQ&CDExpiryMonth=1&FOExpiryMonth=1&IRFExpiryMonth=&CDIntraExpiryMonth=&FOIntraExpiryMonth=&IRFIntraExpiryMonth=&CDDate1=&CDDate2=&PeriodType=${periodType}&Periodicity=${period}&ct0=g1|1|1&ct1=g2|2|1&ctcount=2&time=${new Date().getTime()}`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         Host: 'nseindia.com',
         Referer: 'https://nseindia.com/ChartApp/install/charts/mainpage.jsp'
       }
-    });
+    }
+  );
+  return data.data;
 }
 
-function getIndexChartData(symbol, time) {
+async function getIndexChartData(symbol, time) {
   var periodType = typeof time === 'string' ? 1 : 2;
   var period = getTime(periodType, time);
 
-  return axios.get(INDEX_CHARTDATA_URL + encodeURIComponent(symbol) + '&Periodicity=' + period + '&PeriodType=' + periodType);
+  let data = await axios.get(INDEX_CHARTDATA_URL + encodeURIComponent(symbol) + '&Periodicity=' + period + '&PeriodType=' + periodType);
+  return data.data;
 }
 
-function searchStocks(searchString) {
+async function searchStocks(searchString) {
   var options = {
     headers: {
       'X-Requested-With': 'XMLHttpRequest',
@@ -179,10 +186,11 @@ function searchStocks(searchString) {
     transformResponse: searchTransformer(false)
   };
 
-  return axios.get(SEARCH_URL + encodeURIComponent(searchString), options);
+  let data = await axios.get(SEARCH_URL + encodeURIComponent(searchString), options);
+  return data.data;
 }
 
-function getStockFuturesData(symbol, expiryDate, isIndex) {
+async function getStockFuturesData(symbol, expiryDate, isIndex) {
   var params = {
     'underlying': symbol,
     'instrument': 'FUTSTK',
@@ -196,7 +204,7 @@ function getStockFuturesData(symbol, expiryDate, isIndex) {
     params['instrument'] = 'FUTIDX';
   }
 
-  return axios({
+  let data = await axios({
     method: 'GET',
     url: STOCK_OPTIONS_URL,
     params: params,
@@ -206,46 +214,26 @@ function getStockFuturesData(symbol, expiryDate, isIndex) {
       'Referer': 'https://nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuoteFO.jsp?underlying=' + symbol + '&instrument=' + params['instrument'] + '&type=SELECT&strike=SELECT&expiry=' + expiryDate,
     }
   });
+  return data.data;
 }
 
-function get52WeekHigh() {
-  return axios({
-    method: 'GET',
-    url: YEAR_HIGH_URL,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      Host: 'www.nseindia.com',
-      'Referer': 'https://nseindia.com/products/content/equities/equities/eq_new_high_low.htm'
-    }
-  });
+async function get52WeekHigh() {
+  let data = await axios.get(YEAR_HIGH_URL);
+  return data.data;
 }
 
-function get52WeekLow() {
-  return axios({
-    method: 'GET',
-    url: YEAR_LOW_URL,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      Host: 'www.nseindia.com',
-      'Referer': 'https://nseindia.com/products/content/equities/equities/eq_new_high_low.htm'
-    }
-  });
+async function get52WeekLow() {
+  let data = await axios(YEAR_LOW_URL);
+  return data.data;
 }
 
-function getTopValueStocks() {
-  return axios({
-    method: 'GET',
-    url: TOP_VALUE_URL,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest',
-      Host: 'www.nseindia.com',
-      'Referer': 'https://nseindia.com/live_market/dynaContent/live_analysis/most_active_securities.htm'
-    }
-  });
+async function getTopValueStocks() {
+  let data = await axios(TOP_VALUE_URL);
+  return data.data;
 }
 
-function getTopVolumeStocks() {
-  return axios({
+async function getTopVolumeStocks() {
+  let data = await axios({
     method: 'GET',
     url: TOP_VOLUME_URL,
     headers: {
@@ -254,6 +242,7 @@ function getTopVolumeStocks() {
       'Referer': 'https://nseindia.com/live_market/dynaContent/live_analysis/most_active_securities.htm'
     }
   });
+  return data.data;
 }
 
 var NSEAPI = {
