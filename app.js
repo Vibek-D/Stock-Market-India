@@ -1,4 +1,3 @@
-// var API = require('indian-stock-exchange');
 var express = require("express");
 var API = require('./index');
 
