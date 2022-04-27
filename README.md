@@ -254,7 +254,3 @@ Now the webserver should be running on port 3000 and you should be able to acces
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/maanavshah/stock-market-india. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 I give credits to https://github.com/kaushiknishchay/indian-stock-exchange, using which it was possible for me to create the library.
-
-### License
-
-The content of this repository is licensed under [MIT LICENSE](LICENSE).
